@@ -68,7 +68,23 @@ public class ByLinkNameAndXpath {
         *
         * */
 
-        driver.findElement(By.xpath("//input[@type='text'][2]")).sendKeys("12345");
+        driver.findElement(By.xpath("//input[@type='text'][2]")).sendKeys("john@gmail.com");
+
+        // Using CssSelector we can target the elements based on the indexes but it's a bit different
+        /*
+        * The Syntax for that is very simple:
+        * tagName[attribute='value']:nth-child(indexNumber)
+        *
+        * for example for an input of:
+        *   <input type = "text" placeholder = "Name" >
+        *   the cssSelector could be something like:
+        *   input[type='text']:nth-child(3)
+        *
+        * */
+
+        driver.findElement(By.cssSelector("input[type='text']:nth-child(3)")).clear();
+
+        driver.findElement(By.cssSelector("input[type='text']:nth-child(3)")).sendKeys("Example@example.com");
 
     }
 

@@ -6,9 +6,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
-public class ParentToChildUsingXpath {
+public class WritingLocatorBasedOnRegularExpression {
 
     public static void main(String[] args) throws InterruptedException {
+
 
         // Initialized the ChromeDriver using WebDriver interface
         WebDriver driver = new ChromeDriver();
@@ -23,9 +24,9 @@ public class ParentToChildUsingXpath {
         driver.findElement(By.linkText("Forgot your password?")).click();
 
         /* There is an issue when we click on the reset button and we need the page to be loaded first and the continue with the
-        *  execution, so for that reason we are going to add a wait of maybe 1 or 2 seconds in order for the page to complete
-        *  it's transition
-        *  */
+         *  execution, so for that reason we are going to add a wait of maybe 1 or 2 seconds in order for the page to complete
+         *  it's transition
+         *  */
 
         Thread.sleep(2000);
 
@@ -57,19 +58,39 @@ public class ParentToChildUsingXpath {
         driver.findElement(By.cssSelector(".reset-pwd-btn")).click();
 
         /*
-        *  Now, how to go from parent to child using the cssSelector
-        *  It's similar to Xpath, but the only difference is that instead of using the / we are going to use the space between the parent
-        *  and the child tag names
-        *
-        *  for example
-        *
-        *   parentTagName childTagName
-        *
-        * */
+         *  Now, how to go from parent to child using the cssSelector
+         *  It's similar to Xpath, but the only difference is that instead of using the / we are going to use the space between the parent
+         *  and the child tag names
+         *
+         *  for example
+         *
+         *   parentTagName childTagName
+         *
+         * */
 
         System.out.println(driver.findElement(By.cssSelector("form p")).getText());
 
+        driver.findElement(By.xpath("//div[contains(@class,'pwd')]/button[1]")).click();
 
+        Thread.sleep(1000);
+
+        driver.findElement(By.cssSelector("input[placeholder='Name']")).sendKeys("rahul");
+        driver.findElement(By.cssSelector("input[type*='pass']")).sendKeys("rahulshettyacademy");
+
+        // To use regular expression to find an element in the DOM
+        /*
+        * //element[contains(@attribute,'value')]
+        *
+        * */
+
+        driver.findElement(By.id("chkboxOne")).click();
+
+        // To target the signIn button with the class submit or SignInBtn it is as
+
+        driver.findElement(By.xpath("//button[contains(@class,'submit')]")).click();
+
+        // For the forgot password Link it should be as
+        driver.findElement(By.xpath("//div[contains(@class,'pwd')]"));
 
     }
 
